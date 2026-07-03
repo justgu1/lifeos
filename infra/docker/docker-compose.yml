@@ -1,0 +1,23 @@
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: infra/docker/api.Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      LIFEOS_DATABASE_URL: sqlite:////data/lifeos.db
+    volumes:
+      - lifeos-data:/data
+
+  web:
+    build:
+      context: ../..
+      dockerfile: infra/docker/web.Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+volumes:
+  lifeos-data:

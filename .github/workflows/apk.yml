@@ -1,0 +1,39 @@
+name: apk
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build-apk:
+    name: build android apk (capacitor)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+      - name: Build web bundle
+        run: pnpm --filter @lifeos/web build
+      - name: Sync Capacitor
+        run: pnpm --filter @lifeos/web exec cap sync android
+      - name: Assemble debug APK
+        working-directory: apps/web/android
+        run: ./gradlew assembleDebug
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: lifeos-debug-apk
+          path: apps/web/android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: warn
