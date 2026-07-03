@@ -55,13 +55,17 @@ jobs:
         run: docker build -f infra/docker/api.Dockerfile -t lifeos-api:ci .
       - name: Build Web image
         run: docker build -f infra/docker/web.Dockerfile -t lifeos-web:ci .
-      - name: Smoke-test API container
+      - name: Smoke-test API container (health + POST /events)
         run: |
           docker run -d --rm -p 8000:8000 --name lifeos-api-ci lifeos-api:ci
-          for i in $(seq 1 15); do
-            if wget -qO- http://localhost:8000/health | grep -q '"status":"ok"'; then
-              echo "api healthy"; docker stop lifeos-api-ci; exit 0
-            fi
+          ok=0
+          for i in $(seq 1 20); do
+            if wget -qO- http://localhost:8000/health | grep -q '"status":"ok"'; then ok=1; break; fi
             sleep 2
           done
-          echo "api did not become healthy"; docker logs lifeos-api-ci; docker stop lifeos-api-ci; exit 1
+          if [ "$ok" != "1" ]; then echo "api not healthy"; docker logs lifeos-api-ci; docker stop lifeos-api-ci; exit 1; fi
+          body='{"events":[{"id":"EVTCI0001","aggregate_id":"g1","aggregate_type":"goal","expected_version":0,"event_type":"goal.created","payload":{"id":"00000000-0000-0000-0000-000000000001","vision_id":"00000000-0000-0000-0000-000000000002","title":"ci","created_at":"2026-07-03T12:00:00Z"}}]}'
+          resp=$(wget -qO- --header='content-type: application/json' --post-data="$body" http://localhost:8000/events)
+          echo "response: $resp"
+          docker stop lifeos-api-ci
+          echo "$resp" | grep -q 'EVTCI0001' || { echo "POST /events failed"; exit 1; }
