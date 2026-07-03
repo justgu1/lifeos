@@ -9,7 +9,9 @@ dependencies = [
     "sqlalchemy>=2.0",
     "alembic>=1.14",
     "pydantic>=2.9",
+    "python-ulid>=2.7",
     "lifeos-domain",
+    "lifeos-shared",
 ]
 
 [project.optional-dependencies]
@@ -22,6 +24,7 @@ dev = [
 
 [tool.uv.sources]
 lifeos-domain = { workspace = true }
+lifeos-shared = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]

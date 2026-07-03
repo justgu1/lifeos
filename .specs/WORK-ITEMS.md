@@ -5,7 +5,7 @@
 | TEMPLATE-001 | template | draft | high | [] |
 | PLATFORM-001 | platform | active | high | [] |
 | SHARED-001 | shared-kernel | active | high | [PLATFORM-001] |
-| PLATFORM-002 | platform | draft | high | [PLATFORM-001, SHARED-001] |
+| PLATFORM-002 | platform | active | high | [PLATFORM-001, SHARED-001] |
 | STRATEGY-001 | strategy | draft | high | [PLATFORM-002, SHARED-001] |
 | ROUTINE-001 | routine | draft | high | [STRATEGY-001] |
 | PLANNING-001 | planning | draft | high | [ROUTINE-001] |

@@ -1,11 +1,10 @@
-"""FastAPI application factory.
+"""FastAPI application factory."""
 
-Scaffold only — no routes wired yet. Endpoints (POST /events, GET /week,
-GET /today, GET /dashboard, POST /review, POST /setup) are added by their
-respective work-items once activated.
-"""
+from __future__ import annotations
 
 from fastapi import FastAPI
+
+from app.api.routes import events
 
 
 def create_app() -> FastAPI:
@@ -15,6 +14,7 @@ def create_app() -> FastAPI:
     def health() -> dict[str, str]:
         return {"status": "ok"}
 
+    app.include_router(events.router)
     return app
 
 

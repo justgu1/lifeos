@@ -1,7 +1,7 @@
 ---
 item: event-store-snapshot-outbox
 module: platform
-status: draft
+status: active
 priority: high
 depends_on: [PLATFORM-001, SHARED-001]
 ---

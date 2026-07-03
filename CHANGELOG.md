@@ -3,6 +3,12 @@
 > Product evolution timeline.
 > Updated after every relevant change.
 
+## [0.1.3] - 2026-07-03
+
+### Added
+- PLATFORM-002: event store (append-only Events with UNIQUE(aggregate_id, version) optimistic concurrency, idempotent ingestion by ULID id), latest-only Snapshots with rebuild-from-snapshot+tail, transactional Outbox + relay, Config singleton, handler registry/dispatch, and the POST /events endpoint validating payloads against the shared pydantic models.
+- Alembic initial migration for events/snapshots/outbox/config; SQLite WAL. Tests cover concurrency (409), idempotency, snapshot+tail == full replay, outbox, endpoint and migrations.
+
 ## [0.1.2] - 2026-07-03
 
 ### Added

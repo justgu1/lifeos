@@ -6,9 +6,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      LIFEOS_DATABASE_URL: sqlite:////data/lifeos.db
+      LIFEOS_DATABASE_URL: sqlite:////app/data/lifeos.db
     volumes:
-      - lifeos-data:/data
+      - lifeos-data:/app/data
 
   web:
     build:
