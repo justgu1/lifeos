@@ -14,8 +14,12 @@ line-length = 100
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 
+[tool.ruff.lint.isort]
+known-first-party = ["app", "lifeos_domain"]
+
 [tool.importlinter]
 root_packages = ["lifeos_domain"]
+include_external_packages = true
 
 [[tool.importlinter.contracts]]
 name = "domain-is-framework-free"

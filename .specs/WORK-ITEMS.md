@@ -16,5 +16,6 @@
 | REVIEW-002 | review | draft | medium | [REVIEW-001, PLANNING-001] |
 | REVIEW-003 | review | draft | medium | [REVIEW-002] |
 | PLATFORM-003 | platform | draft | medium | [PLATFORM-002, CHECKIN-001] |
+| PLATFORM-004 | platform | draft | medium | [CHECKIN-002] |
 | NOTIF-001 | notifications | draft | medium | [CHECKIN-001] |
 | COACH-001 | ai-coach | draft | low | [REVIEW-002, PLATFORM-003] |
