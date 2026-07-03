@@ -1,26 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lifeos/events/GoalCreated.schema.json",
-  "title": "GoalCreated",
+  "$id": "https://lifeos/events/VisionCreated.schema.json",
+  "title": "VisionCreated",
   "type": "object",
   "properties": {
     "id": {
       "type": "string",
       "format": "uuid"
     },
-    "vision_id": {
-      "type": "string",
-      "format": "uuid"
-    },
     "title": {
       "type": "string"
     },
-    "target_date": {
+    "statement": {
       "type": [
         "string",
         "null"
-      ],
-      "format": "date"
+      ]
     },
     "created_at": {
       "type": "string",
@@ -29,7 +24,6 @@
   },
   "required": [
     "id",
-    "vision_id",
     "title",
     "created_at"
   ],

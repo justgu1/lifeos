@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/WeekReviewed.schema.json",
+  "title": "WeekReviewed",
+  "type": "object",
+  "properties": {
+    "week_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "score": {
+      "type": "object",
+      "properties": {
+        "points": {
+          "type": "integer"
+        },
+        "max_points": {
+          "type": "integer"
+        },
+        "percentage": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "points",
+        "max_points",
+        "percentage"
+      ],
+      "additionalProperties": false
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "highlights": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "blockers": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "next_focus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "week_id",
+    "score",
+    "reviewed_at"
+  ],
+  "additionalProperties": false
+}

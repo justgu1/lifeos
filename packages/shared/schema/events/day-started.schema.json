@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/DayStarted.schema.json",
+  "title": "DayStarted",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "week_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "daily_block_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "date",
+    "week_id",
+    "daily_block_ids"
+  ],
+  "additionalProperties": false
+}

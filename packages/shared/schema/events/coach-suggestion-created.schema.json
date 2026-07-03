@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/CoachSuggestionCreated.schema.json",
+  "title": "CoachSuggestionCreated",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "context_ref": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "generated_at",
+    "context_ref"
+  ],
+  "additionalProperties": false
+}

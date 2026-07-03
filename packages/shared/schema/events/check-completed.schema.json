@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/CheckCompleted.schema.json",
+  "title": "CheckCompleted",
+  "type": "object",
+  "properties": {
+    "day_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "daily_block_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "day_id",
+    "daily_block_id",
+    "completed_at"
+  ],
+  "additionalProperties": false
+}

@@ -5,7 +5,7 @@ description = "LifeOS — personal self-management (event-sourced monorepo)"
 requires-python = ">=3.12"
 
 [tool.uv.workspace]
-members = ["apps/api", "packages/domain"]
+members = ["apps/api", "packages/domain", "packages/shared/py"]
 
 [tool.ruff]
 target-version = "py312"
@@ -15,7 +15,7 @@ line-length = 100
 select = ["E", "F", "I", "UP", "B"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["app", "lifeos_domain"]
+known-first-party = ["app", "lifeos_domain", "lifeos_shared"]
 
 [tool.importlinter]
 root_packages = ["lifeos_domain"]

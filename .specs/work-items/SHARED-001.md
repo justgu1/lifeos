@@ -1,7 +1,7 @@
 ---
 item: event-schema-and-shared-kernel
 module: shared-kernel
-status: draft
+status: active
 priority: high
 depends_on: [PLATFORM-001]
 ---

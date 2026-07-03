@@ -35,5 +35,5 @@ apps/web/ios/
 .vscode/
 
 # Generated (codegen outputs)
-packages/shared/py/generated/
+packages/shared/py/src/lifeos_shared/generated/
 packages/shared/ts/generated/

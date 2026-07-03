@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/RoutineCreated.schema.json",
+  "title": "RoutineCreated",
+  "type": "object",
+  "properties": {
+    "routine_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "scheduled_block_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "routine_id",
+    "scheduled_block_ids",
+    "created_at"
+  ],
+  "additionalProperties": false
+}

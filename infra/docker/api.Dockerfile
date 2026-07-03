@@ -6,6 +6,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 WORKDIR /app
 COPY pyproject.toml uv.lock ./
 COPY packages/domain ./packages/domain
+COPY packages/shared/py ./packages/shared/py
 COPY apps/api ./apps/api
 
 RUN uv sync --package lifeos-api --frozen --no-dev || uv sync --package lifeos-api
