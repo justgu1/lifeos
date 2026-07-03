@@ -1,13 +1,15 @@
 name: apk
 
+# Deferred gate (ADR-006). The Android project does not exist yet, so this
+# workflow is manual-only until PLATFORM-004 scaffolds the Capacitor Android
+# shell (@capacitor/android + `cap add android`). Once that lands, this becomes
+# a required, containerized per-PR gate that runs `gradlew assembleDebug`.
 on:
-  pull_request:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-apk:
-    name: build android apk (capacitor)
+    name: build android apk (capacitor) — deferred until PLATFORM-004
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,22 +20,14 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
       - name: Install deps
         run: pnpm install --frozen-lockfile
       - name: Build web bundle
         run: pnpm --filter @lifeos/web build
-      - name: Sync Capacitor
-        run: pnpm --filter @lifeos/web exec cap sync android
-      - name: Assemble debug APK
-        working-directory: apps/web/android
-        run: ./gradlew assembleDebug
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: lifeos-debug-apk
-          path: apps/web/android/app/build/outputs/apk/debug/*.apk
-          if-no-files-found: warn
+      - name: Android build (activated in PLATFORM-004)
+        run: |
+          if [ -d apps/web/android ]; then
+            echo "android project present — native APK build runs in PLATFORM-004"
+          else
+            echo "no android project yet; APK gate is deferred to PLATFORM-004"
+          fi
