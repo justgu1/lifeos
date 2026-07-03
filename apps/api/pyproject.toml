@@ -1,0 +1,31 @@
+[project]
+name = "lifeos-api"
+version = "0.1.0"
+description = "LifeOS API — FastAPI presentation/application/infrastructure"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+    "sqlalchemy>=2.0",
+    "alembic>=1.14",
+    "pydantic>=2.9",
+    "lifeos-domain",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "httpx>=0.27",
+    "ruff>=0.7",
+    "import-linter>=2.1",
+]
+
+[tool.uv.sources]
+lifeos-domain = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
