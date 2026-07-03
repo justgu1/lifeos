@@ -7,39 +7,57 @@ on:
 
 jobs:
   api:
-    name: api (lint + unit + import-linter)
+    name: api (lint + import-linter + unit)
     runs-on: ubuntu-latest
+    # Isolated toolchain: run inside the uv image (prod-parity Python).
+    container: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
     steps:
       - uses: actions/checkout@v4
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
-      - name: Sync workspace
-        run: uv sync --all-packages
+      - name: Sync workspace (frozen)
+        run: uv sync --all-packages --frozen
       - name: Lint
-        run: uv run ruff check .
+        run: uv run --with ruff ruff check .
       - name: Import boundaries (domain is framework-free)
-        run: uv run lint-imports
+        run: uv run --with import-linter lint-imports
       - name: Unit tests
-        run: uv run pytest apps/api packages/domain
+        run: uv run --with pytest --with httpx pytest apps/api packages/domain
 
   web:
-    name: web (lint + unit + e2e)
+    name: web (typecheck + unit + e2e)
     runs-on: ubuntu-latest
+    # Isolated toolchain: Playwright image ships Node 20 + browsers for e2e.
+    container: mcr.microsoft.com/playwright:v1.61.1-jammy
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - name: Enable pnpm
+        run: corepack enable
+      - name: Install (frozen)
+        run: pnpm install --frozen-lockfile
       - name: Codegen (shared event schema)
         run: pnpm codegen
-      - name: Lint
+      - name: Typecheck
         run: pnpm --filter @lifeos/web lint
       - name: Unit tests
         run: pnpm --filter @lifeos/web test
       - name: E2E tests
         run: pnpm --filter @lifeos/web e2e
+
+  images:
+    name: container images (build isolation / prod parity)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build API image
+        run: docker build -f infra/docker/api.Dockerfile -t lifeos-api:ci .
+      - name: Build Web image
+        run: docker build -f infra/docker/web.Dockerfile -t lifeos-web:ci .
+      - name: Smoke-test API container
+        run: |
+          docker run -d --rm -p 8000:8000 --name lifeos-api-ci lifeos-api:ci
+          for i in $(seq 1 15); do
+            if wget -qO- http://localhost:8000/health | grep -q '"status":"ok"'; then
+              echo "api healthy"; docker stop lifeos-api-ci; exit 0
+            fi
+            sleep 2
+          done
+          echo "api did not become healthy"; docker logs lifeos-api-ci; docker stop lifeos-api-ci; exit 1

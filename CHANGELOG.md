@@ -3,6 +3,18 @@
 > Product evolution timeline.
 > Updated after every relevant change.
 
+## [0.1.1] - 2026-07-03
+
+### Fixed
+- CI now runs isolated inside containers (uv image for api; Playwright image for web) and passes on the scaffold; added an images job that builds the api/web Docker images and smoke-tests the API container.
+- Committed lockfiles (uv.lock, pnpm-lock.yaml) for reproducible frozen installs; ruff isort first-party config and import-linter include_external_packages; scoped vitest to src so it no longer collides with Playwright e2e; root .dockerignore (build context is the repo root).
+
+### Changed
+- APK build gate deferred to a manual workflow until PLATFORM-004 scaffolds the Capacitor Android shell (there is no Android project on the empty scaffold).
+
+### Added
+- Work-item PLATFORM-004 (android-shell-and-apk-gate).
+
 ## [0.1.0] - 2026-07-03
 
 ### Added
