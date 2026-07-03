@@ -13,5 +13,8 @@
     "test": "pnpm -r test",
     "e2e": "pnpm --filter @lifeos/web e2e",
     "build": "pnpm -r build"
+  },
+  "devDependencies": {
+    "json-schema-to-zod": "^2.6.0"
   }
 }

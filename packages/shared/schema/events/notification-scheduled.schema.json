@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/NotificationScheduled.schema.json",
+  "title": "NotificationScheduled",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "type": {
+      "enum": [
+        "midday",
+        "evening",
+        "night"
+      ]
+    },
+    "scheduled_for": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "scheduled_for"
+  ],
+  "additionalProperties": false
+}

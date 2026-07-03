@@ -3,6 +3,13 @@
 > Product evolution timeline.
 > Updated after every relevant change.
 
+## [0.1.2] - 2026-07-03
+
+### Added
+- SHARED-001: canonical event schema (16 events as JSON Schema, single source of truth) with codegen to TypeScript zod validators (packages/shared/ts) and pydantic models (packages/shared/py, package lifeos-shared).
+- shared-kernel value objects Progress and Score (packages/domain) with clamping and derived percentage, plus unit tests.
+- CI now generates and typechecks the shared contract on both sides (zod in the web job, pydantic in the api job).
+
 ## [0.1.1] - 2026-07-03
 
 ### Fixed

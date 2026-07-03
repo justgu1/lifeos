@@ -1,37 +1,35 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lifeos/events/GoalCreated.schema.json",
-  "title": "GoalCreated",
+  "$id": "https://lifeos/events/WeekStarted.schema.json",
+  "title": "WeekStarted",
   "type": "object",
   "properties": {
     "id": {
       "type": "string",
       "format": "uuid"
     },
-    "vision_id": {
+    "cycle_id": {
       "type": "string",
       "format": "uuid"
     },
-    "title": {
-      "type": "string"
+    "index": {
+      "type": "integer"
     },
-    "target_date": {
-      "type": [
-        "string",
-        "null"
-      ],
+    "start_date": {
+      "type": "string",
       "format": "date"
     },
-    "created_at": {
+    "end_date": {
       "type": "string",
-      "format": "date-time"
+      "format": "date"
     }
   },
   "required": [
     "id",
-    "vision_id",
-    "title",
-    "created_at"
+    "cycle_id",
+    "index",
+    "start_date",
+    "end_date"
   ],
   "additionalProperties": false
 }

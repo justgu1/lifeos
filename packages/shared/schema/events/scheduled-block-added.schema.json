@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/ScheduledBlockAdded.schema.json",
+  "title": "ScheduledBlockAdded",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "block_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "weekday": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "start_time": {
+      "type": "string",
+      "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+    },
+    "mandatory": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "block_id",
+    "weekday",
+    "start_time",
+    "mandatory"
+  ],
+  "additionalProperties": false
+}

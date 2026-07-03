@@ -4,7 +4,7 @@
 |----------|----------|----------|----------|----------|
 | TEMPLATE-001 | template | draft | high | [] |
 | PLATFORM-001 | platform | active | high | [] |
-| SHARED-001 | shared-kernel | draft | high | [PLATFORM-001] |
+| SHARED-001 | shared-kernel | active | high | [PLATFORM-001] |
 | PLATFORM-002 | platform | draft | high | [PLATFORM-001, SHARED-001] |
 | STRATEGY-001 | strategy | draft | high | [PLATFORM-002, SHARED-001] |
 | ROUTINE-001 | routine | draft | high | [STRATEGY-001] |

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/BlockDefinitionCreated.schema.json",
+  "title": "BlockDefinitionCreated",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string"
+    },
+    "emoji": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "estimated_minutes": {
+      "type": "integer"
+    },
+    "default_points": {
+      "type": "integer"
+    },
+    "color": {
+      "type": "string"
+    },
+    "goal_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "emoji",
+    "category",
+    "estimated_minutes",
+    "default_points",
+    "color"
+  ],
+  "additionalProperties": false
+}
