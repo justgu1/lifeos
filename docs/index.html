@@ -1,68 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Documentation</title>
-
+<title>LifeOS — Documentação</title>
 <style>
-body{
-    font-family:system-ui,sans-serif;
-    max-width:1200px;
-    margin:auto;
-    padding:2rem;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    border:1px solid #ddd;
-    padding:.75rem;
-    text-align:left;
-}
-
-a{
-    text-decoration:none;
-}
+body{font-family:system-ui,sans-serif;max-width:1100px;margin:auto;padding:2rem;line-height:1.55;color:#1a1a1a}
+h1{margin-bottom:.2rem}
+.sub{color:#666;margin-top:0}
+table{width:100%;border-collapse:collapse;margin:1rem 0}
+th,td{border:1px solid #ddd;padding:.6rem;text-align:left;vertical-align:top}
+th{background:#f6f6f6}
+code{background:#f2f2f2;padding:.1rem .3rem;border-radius:4px}
+a{color:#0b6bcb;text-decoration:none}
+section{margin-top:2rem}
 </style>
 </head>
-
 <body>
+<h1>LifeOS</h1>
+<p class="sub">Sistema pessoal de auto-gestão: objetivos semanais que escalam para metas de longo prazo, girando em torno de <strong>Blocos</strong>.</p>
 
-<h1>Documentation</h1>
+<section>
+<h2>Como funciona</h2>
+<p>O LifeOS registra tudo como <strong>eventos</strong> (Event Sourcing). Você define uma <em>Visão</em> e <em>Objetivos</em> de longo prazo, monta uma <em>Rotina</em> de blocos recorrentes (ex.: 🏋 Academia, 💻 Engenharia, 📖 Leitura), e a cada dia faz o <em>check-in</em> marcando os blocos concluídos. No domingo (dia livre) você faz a <em>revisão semanal</em>. Painéis mostram progresso por semana, mês, ciclo e ano.</p>
+</section>
 
-<p>
-Human-oriented project documentation.
-</p>
-
-<h2>Modules</h2>
-
+<section>
+<h2>Conceitos-chave</h2>
 <table>
-<thead>
-<tr>
-<th>Module</th>
-<th>Description</th>
-<th>Documentation</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td>Template</td>
-<td>Example module documentation</td>
-<td>
-<a href="./modules/template.html">
-Open
-</a>
-</td>
-</tr>
-
-</tbody>
+<tr><th>Termo</th><th>Descrição</th></tr>
+<tr><td>Visão</td><td>Direção de longo prazo à qual os objetivos se conectam.</td></tr>
+<tr><td>Objetivo (Goal)</td><td>Meta de longo prazo com progresso derivado.</td></tr>
+<tr><td>Ciclo</td><td>Horizonte de médio prazo (trimestre por padrão, configurável) agrupando semanas.</td></tr>
+<tr><td>Semana</td><td>Segunda a domingo. Seg–Sáb têm blocos; domingo é livre e reservado à revisão.</td></tr>
+<tr><td>Bloco</td><td>Unidade de atividade focada. O sistema gira em torno de blocos, não tarefas.</td></tr>
+<tr><td>BlockDefinition</td><td>Item de catálogo do bloco (nome, emoji, categoria, minutos, pontos, cor).</td></tr>
+<tr><td>ScheduledBlock</td><td>Bloco posicionado num dia/horário da rotina semanal, com flag de obrigatório.</td></tr>
+<tr><td>DailyBlock</td><td>ScheduledBlock materializado para um dia concreto; pode ser concluído.</td></tr>
+<tr><td>Score</td><td>Pontos obtidos vs possíveis; obrigatórios pesam; streak de dias.</td></tr>
 </table>
+</section>
 
+<section>
+<h2>Módulos</h2>
+<p>Detalhes em <a href="modules/visao-geral.html">visão geral dos módulos</a>. A fonte da verdade são as specs em <code>.specs/</code>.</p>
+</section>
+
+<section>
+<h2>Arquitetura</h2>
+<p>Monorepo com DDD-leve + Event Sourcing + Outbox + Snapshots semanais. Backend em FastAPI/SQLite; frontend em React/Vite/Capacitor (offline-first). O domínio puro vive em Python; o contrato de eventos é compartilhado com o front via JSON Schema gerando pydantic e zod.</p>
+<p>Governança: cada work-item é um PR, com CI obrigatória de testes unitários, end-to-end e build do APK.</p>
+</section>
 </body>
 </html>

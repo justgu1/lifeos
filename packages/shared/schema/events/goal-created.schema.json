@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifeos/events/goal-created.schema.json",
+  "title": "GoalCreated",
+  "description": "Reference event schema. The full catalog is authored in SHARED-001.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "vision_id": { "type": "string", "format": "uuid" },
+    "title": { "type": "string", "minLength": 1 },
+    "target_date": { "type": ["string", "null"], "format": "date" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["id", "vision_id", "title", "created_at"],
+  "additionalProperties": false
+}

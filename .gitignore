@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.uv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+dist/
+.vite/
+coverage/
+playwright-report/
+test-results/
+
+# Capacitor / mobile
+apps/web/android/
+apps/web/ios/
+*.apk
+
+# Databases / local
+*.db
+*.sqlite
+*.sqlite3
+
+# Env
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Generated (codegen outputs)
+packages/shared/py/generated/
+packages/shared/ts/generated/

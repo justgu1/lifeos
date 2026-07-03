@@ -1,0 +1,24 @@
+[project]
+name = "lifeos"
+version = "0.1.0"
+description = "LifeOS — personal self-management (event-sourced monorepo)"
+requires-python = ">=3.12"
+
+[tool.uv.workspace]
+members = ["apps/api", "packages/domain"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.importlinter]
+root_packages = ["lifeos_domain"]
+
+[[tool.importlinter.contracts]]
+name = "domain-is-framework-free"
+type = "forbidden"
+source_modules = ["lifeos_domain"]
+forbidden_modules = ["fastapi", "sqlalchemy", "alembic"]
