@@ -1,0 +1,19 @@
+{
+  "eventTypes": {
+    "VisionCreated": "vision.created",
+    "GoalCreated": "goal.created",
+    "GoalAchieved": "goal.achieved",
+    "BlockDefinitionCreated": "block-definition.created",
+    "ScheduledBlockAdded": "scheduled-block.added",
+    "RoutineCreated": "routine.created",
+    "CycleCreated": "cycle.created",
+    "WeekStarted": "week.started",
+    "WeekReviewed": "week.reviewed",
+    "DayStarted": "day.started",
+    "CheckCompleted": "check.completed",
+    "DailyBlockCompleted": "daily-block.completed",
+    "SnapshotCreated": "snapshot.created"
+  },
+  "weekStartDay": "monday",
+  "notificationHoursDefault": [13, 18, 22]
+}

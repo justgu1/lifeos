@@ -1,0 +1,17 @@
+{
+  "name": "lifeos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LifeOS — personal self-management (event-sourced monorepo)",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "codegen": "node scripts/codegen.mjs",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "e2e": "pnpm --filter @lifeos/web e2e",
+    "build": "pnpm -r build"
+  }
+}
